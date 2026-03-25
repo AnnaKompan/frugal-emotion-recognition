@@ -57,7 +57,6 @@ A model trained on extracted keypoints will be:
    - accuracy
    - F1-score
    - training time
-   - inference time
    - number of parameters
    - model size
 6. Plots:
