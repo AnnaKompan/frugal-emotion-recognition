@@ -68,6 +68,18 @@ A model trained on extracted keypoints will be:
    - Model Size Comparison (MB)
    - Frugality Plot (Resources vs Accuracy of both models)
 
+## Visualization of MP Holistic model
+
+1. Face Detection
+
+![happy](img/output.png)
+![happy_result](img/output_2.png)
+
+2. Emotion Detection
+
+![happy_emotion](img/test_emotions.png)
+![happy_emotion_result](img/test_emotions_res.png)
+
 ## Project Structure
 
 ```bash
