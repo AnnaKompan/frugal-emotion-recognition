@@ -9,6 +9,10 @@ venv/
 Thumbs.db
 *.log
 affectnet_dataset/
+keypoints_dataset/
+keypoints_dataset_2/
+logs/
+model/
 EmoSet/
 *.tmp
 *.cache
