@@ -11,9 +11,13 @@ Thumbs.db
 affectnet_dataset/
 keypoints_dataset/
 keypoints_dataset_2/
+FER_2013_dataset(gray)/
 logs/
 model/
+saved_models/
 EmoSet/
 *.tmp
 *.cache
+*.tflite
+*.task
 *.out

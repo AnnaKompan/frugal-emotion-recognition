@@ -17,10 +17,11 @@ from sklearn.utils.class_weight import compute_class_weight
 # %%
 TRAIN_DATA_PATH = os.path.join("../affectnet_dataset/Train")
 TEST_DATA_PATH = os.path.join("../affectnet_dataset/Test")
-EPOCHS = 50
+EPOCHS = 100
 RANDOM_SEED = 40
 BATCH_SIZE = 32
 IMG_SIZE = (75,75)
+SAVED_MODEL = "../saved_models/cnn_weighted_model.h5"
 CLASSES = [d for d in os.listdir(TRAIN_DATA_PATH) if d != '.DS_Store']
 
 # %%
@@ -56,11 +57,11 @@ test_dataset = image_dataset_from_directory(
 )
 
 # %%
-# CNN works better with 0-1 px values
-layer_normalization = Rescaling(1./255)
+# # CNN works better with 0-1 px values
+# layer_normalization = Rescaling(1./255)
 
-train_dataset = train_dataset.map(lambda x, y: (layer_normalization(x), y))
-test_dataset = test_dataset.map(lambda x, y: (layer_normalization(x),y))
+# train_dataset = train_dataset.map(lambda x, y: (layer_normalization(x), y))
+# test_dataset = test_dataset.map(lambda x, y: (layer_normalization(x),y))
 
 # %%
 train_counts = {}
@@ -102,7 +103,9 @@ data_augmentation = tf.keras.Sequential([
 model = tf.keras.Sequential([
     layers.Input(shape=(75, 75, 3)),
     data_augmentation,
-
+    # Rescaling layer to normalize pixel values to [0, 1] for CNN better performance
+    # Rescaling is not needed if using a pretrained model that expects 0-255 input, but since we're building from scratch, it's beneficial to normalize the input.
+    # Input normalization can help the model converge faster and improve performance.
     layers.Rescaling(1./255),
 
     # Block 1
@@ -146,8 +149,8 @@ model.summary()
 
 # %%
 es = EarlyStopping(monitor='val_loss', patience=10, restore_best_weights=True)
-mc = ModelCheckpoint("../saved_models/weighted_loss_model.h5", monitor='val_accuracy', save_best_only=True)
-csv_logger = CSVLogger('../logs/weighted_loss_training_log.csv')
+mc = ModelCheckpoint(SAVED_MODEL, monitor='val_accuracy', save_best_only=True)
+csv_logger = CSVLogger('../logs/cnn_weighted_loss_training_log.csv')
 
 # %%
 start = time.time()
@@ -190,12 +193,7 @@ plt.show()
 # os.stat("../saved_models/weighted_loss_model.h5").st_size
 
 # %%
-model.save("../saved_models/weighted_loss_model.h5")
-# model.save('../saved_models/weighted_cnn.h5')
-
-# %%
-model = tf.keras.models.load_model("../saved_models/weighted_loss_model.h5")
-# model = tf.keras.models.load_model('../saved_models/weighted_cnn.h5')
+model = tf.keras.models.load_model(SAVED_MODEL)
 
 # %%
 test_loss, test_acc = model.evaluate(test_dataset)
