@@ -9,11 +9,12 @@ venv/
 Thumbs.db
 *.log
 affectnet_dataset/
-keypoints_dataset/
-keypoints_dataset_2/
+clahe_keypoints/
+keypoints_affectnet/
+clahe_dataset/
 FER_2013_dataset(gray)/
 logs/
-model/
+old_model/
 saved_models/
 EmoSet/
 *.tmp

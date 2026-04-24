@@ -94,3 +94,4 @@ A model trained on extracted keypoints will be:
 └── requirements.txt
 └── rgb_dataset.ipynb
 ```
+rm -f .git/index.lock
