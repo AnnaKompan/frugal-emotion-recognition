@@ -12,6 +12,8 @@ affectnet_dataset/
 clahe_keypoints/
 keypoints_affectnet/
 clahe_dataset/
+mask_dataset/
+mask_keypoints/
 FER_2013_dataset(gray)/
 logs/
 old_model/
@@ -22,3 +24,4 @@ EmoSet/
 *.tflite
 *.task
 *.out
+*.csv
