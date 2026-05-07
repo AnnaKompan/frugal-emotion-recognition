@@ -10,7 +10,7 @@ Thumbs.db
 *.log
 affectnet_dataset/
 clahe_keypoints/
-keypoints_affectnet/
+affectnet_keypoints//
 clahe_dataset/
 mask_dataset/
 mask_keypoints/
