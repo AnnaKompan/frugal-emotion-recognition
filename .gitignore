@@ -10,11 +10,10 @@ Thumbs.db
 *.log
 affectnet_dataset/
 clahe_keypoints/
-affectnet_keypoints//
+affectnet_keypoints/
 clahe_dataset/
 mask_dataset/
 mask_keypoints/
-FER_2013_dataset(gray)/
 logs/
 old_model/
 saved_models/
